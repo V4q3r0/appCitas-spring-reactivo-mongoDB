@@ -3,8 +3,6 @@ package com.springBajo8.springBajo8.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.UUID;
 
 @Document(collection = "citas")
@@ -23,11 +21,11 @@ public class citasDTOReactiva {
 
     private String apellidosMedico;
 
-    private LocalDate fechaReservaCita;
+    private String fechaReservaCita;
 
     private String horaReservaCita;
 
-    private String estadoReservaCita;
+    private boolean estadoReservaCita;
 
     public String getId() {
         return id;
@@ -77,11 +75,11 @@ public class citasDTOReactiva {
         this.apellidosMedico = apellidosMedico;
     }
 
-    public LocalDate getFechaReservaCita() {
+    public String getFechaReservaCita() {
         return fechaReservaCita;
     }
 
-    public void setFechaReservaCita(LocalDate fechaReservaCita) {
+    public void setFechaReservaCita(String fechaReservaCita) {
         this.fechaReservaCita = fechaReservaCita;
     }
 
@@ -93,15 +91,12 @@ public class citasDTOReactiva {
         this.horaReservaCita = horaReservaCita;
     }
 
-    public String getEstadoReservaCita() {
+    public boolean getEstadoReservaCita() {
         return estadoReservaCita;
     }
 
-    public void setEstadoReservaCita(String estadoReservaCita) {
+    public void setEstadoReservaCita(boolean estadoReservaCita) {
         this.estadoReservaCita = estadoReservaCita;
     }
-
-    //private Date sendedDate = new Date();
-
 
 }

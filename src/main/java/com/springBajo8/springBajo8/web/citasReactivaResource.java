@@ -48,4 +48,24 @@ public class citasReactivaResource {
         return this.icitasReactivaService.findAll();
     }
 
+    @PutMapping(value = "/citasReactivas/cancelarCita/{id}")
+    private Mono<ResponseEntity<citasDTOReactiva>> cancelCita(@PathVariable("id") String id) {
+        return this.icitasReactivaService.cancelCita(id)
+                .flatMap(citasDTOReactiva -> Mono.just(ResponseEntity.ok(citasDTOReactiva)))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+    }
+
+    @GetMapping(value = "/citasReactivas/getCitaByFecha")
+    private Mono<ResponseEntity<citasDTOReactiva>> getCitaByDate(@RequestBody citasDTOReactiva citasDTOReactiva) {
+        return this.icitasReactivaService.findCita(citasDTOReactiva)
+                .flatMap(citasDTOReactiva1 -> Mono.just(ResponseEntity.ok(citasDTOReactiva1)))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+    }
+
+    @GetMapping(value = "/citasReactivas/medico/{id}")
+    private Mono<ResponseEntity<String>> getCitaByMedico(@PathVariable("id") String id) {
+        return Mono.just(ResponseEntity.ok(this.icitasReactivaService.findByNombreMedicoCita(id)))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+    }
+
 }
